@@ -7,6 +7,8 @@ from flask import request
 
 
 class Auth:
+    """ Authencation class
+    """
     def __init__(self):
         """ Initialises the Auth instances
         """
