@@ -21,6 +21,9 @@ if auth:
 
 @app.before_request
 def before_request_handler():
+    """Before request handler to
+    validate all requests
+    """
     if auth:
         excluded_paths = [
             '/api/v1/status/',
