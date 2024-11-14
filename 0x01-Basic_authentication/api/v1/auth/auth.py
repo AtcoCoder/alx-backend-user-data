@@ -31,7 +31,6 @@ class Auth:
         Return:
             - None
         """
-        print(request)
         if request:
             auth = request.headers.get('Authorization')
             if auth is None:
