@@ -21,8 +21,8 @@ class Auth:
         """
         if excluded_paths is None or len(excluded_paths) == 0:
             return True
-        if path not in excluded_paths and \
-                path + '/' not in excluded_paths or path is None:
+        if path is None or path not in excluded_paths and \
+                path + '/' not in excluded_paths:
             return True
         return False
 
