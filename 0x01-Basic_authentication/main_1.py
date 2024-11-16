@@ -1,15 +1,26 @@
-#!/usr/bin/env python3
-""" Main 1
+#!/usr/bin/python3
+""" Check response
 """
-from api.v1.auth.auth import Auth
+import requests
 
-a = Auth()
+if __name__ == "__main__":
+    url = 'http://0.0.0.0:5000/api/v1/unauthorized/'
+    import time
 
-print(a.require_auth(None, None))
-print(a.require_auth(None, []))
-print("Test is:", a.require_auth(None, ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/status/", []))
-print(a.require_auth("/api/v1/status/", ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/status", ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/users", ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/users", ["/api/v1/status/", "/api/v1/stats"]))
+    r = ''
+    while r == '':
+        try:
+            r = requests.get(url)
+            break
+        except:
+            print("Connection refused by the server..")
+            print("Let me sleep for 5 seconds")
+            print("ZZzzzz...")
+            time.sleep(5)
+            print("Was a nice sleep, now let me continue...")
+            continue
+    if r.status_code != 401:
+        print("Wrong status code: {}".format(r.status_code))
+        exit(1)
+   
+    print("OK", end="")
