@@ -63,7 +63,10 @@ class DB:
     def update_user(self, user_id: int, **kwargs) -> None:
         """Update user base on user id
         """
-
+        try:
+            user = self.find_user_by(id=user_id)
+        except NoResultFound:
+            raise ValueError
         keys = ['email', 'id', 'session_id', 'hashed_password', 'reset_token']
         for key, value in kwargs.items():
             if key not in keys:
