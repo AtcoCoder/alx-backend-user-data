@@ -9,34 +9,50 @@ NEW_PASSWD = "t4rt1fl3tt3"
 
 
 def register_user(email: str, password: str) -> None:
+    """Register user
+    """
     pass
 
 
 def log_in_wrong_password(email: str, password: str) -> None:
+    """log with wrong password test
+    """
     pass
 
 
 def log_in(email: str, password: str) -> str:
+    """login with right credentials test
+    """
     pass
 
 
 def profile_unlogged() -> None:
+    """checking if profile is logged in
+    """
     pass
 
 
 def profile_logged(session_id: str) -> None:
+    """profile logged in
+    """
     pass
 
 
 def log_out(session_id: str) -> None:
+    """log out test
+    """
     pass
 
 
 def reset_password_token(email: str) -> str:
+    """reset_password_test
+    """
     pass
 
 
 def update_password(email: str, reset_token: str, new_password: str) -> None:
+    """update_password_test
+    """
     pass
 
 
