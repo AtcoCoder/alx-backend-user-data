@@ -51,7 +51,7 @@ class DB:
         Return:
             - firt row found in the users
         """
-        keys = ['email', 'id', 'session_id']
+        keys = ['email', 'id', 'session_id', 'reset_token']
         for key in kwargs:
             if key not in keys:
                 raise InvalidRequestError
