@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """App
 """
-from flask import Flask, jsonify, request
-from flask import make_response, abort
+from flask import Flask, jsonify, request, url_for
+from flask import make_response, abort, redirect
 from auth import Auth
 
 
@@ -47,5 +47,28 @@ def login() -> str:
     return abort(401)
 
 
+@app.route("/sessions", methods=["DELETE"])
+def logout() -> str:
+    """Logouts user
+    """
+    session_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_id)
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect(url_for("home"))
+    return abort(403)
+
+
+@app.route("/profile")
+def profile() -> str:
+    """Finds user
+    """
+    session_id = request.cookies.get("session_id")
+    user = AUTH.get_user_from_session_id(session_id)
+    if user:
+        return jsonify({"email": user.email}), 200
+    return abort(403)
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port="5000", debug=True)
