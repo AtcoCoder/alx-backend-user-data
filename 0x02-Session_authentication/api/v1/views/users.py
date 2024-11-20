@@ -31,7 +31,7 @@ def view_one_user(user_id: str = None) -> str:
         try:
             if request.current_user is None:
                 return abort(404)
-        except Exception:
+        except AttributeError as error:
             return abort(404)
         return jsonify(request.current_user.to_json())
     user = User.get(user_id)
