@@ -39,8 +39,6 @@ def before_request_handler():
         ]
         path = request.path
         if auth.require_auth(path, excluded_paths):
-            # if not auth.authorization_header(request):
-            #     return None
             if not auth.authorization_header(request) and\
                     not auth.session_cookie(request):
                 return abort(401)
