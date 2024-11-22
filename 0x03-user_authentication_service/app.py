@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""App
+"""App module
 """
 from flask import Flask, jsonify, request, url_for
 from flask import make_response, abort, redirect
@@ -19,7 +19,7 @@ def home() -> str:
 
 @app.route("/users", methods=["POST"])
 def register_user() -> str:
-    """Registers user"
+    """Registers user" route
     """
     email = request.form.get('email')
     password = request.form.get('password')
@@ -49,7 +49,7 @@ def login() -> str:
 
 @app.route("/sessions", methods=["DELETE"])
 def logout() -> str:
-    """Logouts user
+    """Logouts user route
     """
     session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
@@ -61,7 +61,7 @@ def logout() -> str:
 
 @app.route("/profile")
 def profile() -> str:
-    """Finds user
+    """Finds current user
     """
     session_id = request.cookies.get("session_id")
     user = AUTH.get_user_from_session_id(session_id)
