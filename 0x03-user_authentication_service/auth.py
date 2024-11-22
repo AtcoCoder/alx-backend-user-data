@@ -10,6 +10,8 @@ import uuid
 
 
 def _hash_password(password: str) -> bytes:
+    """Generate hashed password
+    """
     byts = password.encode('utf-8')
     salt = bcrypt.gensalt()
     hashed_pwd = bcrypt.hashpw(byts, salt)
