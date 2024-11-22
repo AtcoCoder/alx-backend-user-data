@@ -5,6 +5,7 @@ import bcrypt
 from db import DB
 from typing import TypeVar
 from sqlalchemy.orm.exc import NoResultFound
+from user import User
 import uuid
 
 
@@ -32,7 +33,7 @@ class Auth:
         """
         self._db = DB()
 
-    def register_user(self, email: str, password: str) -> TypeVar('User'):
+    def register_user(self, email: str, password: str) -> User:
         """
         Args:
             - email <string>
@@ -81,7 +82,7 @@ class Auth:
         except NoResultFound:
             return None
 
-    def get_user_from_session_id(self, session_id: str) -> TypeVar('User'):
+    def get_user_from_session_id(self, session_id: str) -> User:
         """Finds user from session id
         Args:
             - session_id <string>
