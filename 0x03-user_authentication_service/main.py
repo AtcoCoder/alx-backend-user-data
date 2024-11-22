@@ -11,8 +11,6 @@ reset_token = AUTH.get_reset_password_token(
     'test@test.com'
 )
 
-print(reset_token)
-
 with app.test_client() as c:
     payload = {
         'email': "test@test.com",
